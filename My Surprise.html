@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Surprise</title>
+    <style>
+        :root { --pink: #ff85a2; --dark-pink: #ff4d7d; }
+        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #fff0f3; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(255, 133, 162, 0.3); width: 100%; max-width: 450px; text-align: center; border: 2px solid var(--pink); position: relative; }
+        .hidden { display: none; }
+        h2 { color: var(--dark-pink); margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--pink); border-radius: 10px; box-sizing: border-box; outline: none; }
+        button { background: var(--pink); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-size: 18px; width: 100%; transition: 0.3s; margin-top: 15px; }
+        button:hover { background: var(--dark-pink); transform: scale(1.02); }
+        
+        /* استايل صفحة التواريخ */
+        .date-box { border: 2px solid var(--pink); border-radius: 15px; margin-bottom: 15px; overflow: hidden; background: #fffafb; }
+        .date-header { background: var(--pink); color: white; padding: 12px; cursor: pointer; font-weight: bold; font-size: 17px; }
+        .date-content { padding: 15px; display: none; line-height: 1.6; color: #444; border-top: 1px solid var(--pink); font-size: 15px; }
+
+        .timer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
+        .time-box { background: var(--pink); color: white; padding: 15px; border-radius: 15px; }
+        .time-box span { display: block; font-size: 22px; font-weight: bold; }
+        p { line-height: 1.8; color: #444; font-size: 16px; }
+        img { width: 100%; border-radius: 15px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <audio id="mySong" src="music.mp3"></audio>
+
+    <div id="step1" class="container">
+        <h2>تسجيل الدخول ❤️</h2>
+        <input type="text" id="username" placeholder="اسم المستخدم (Nada)">
+        <input type="password" id="password" placeholder="كلمة المرور (1/1/2006)">
+        <button onclick="checkLogin()">دخول</button>
+    </div>
+
+    <div id="step2" class="container hidden">
+        <h2>يا ست البنات ❤️</h2>
+        <img src="1.jpg" alt="صورة 1">
+        <p>بحبك يا ندى</p>
+        <img src="2.jpg" alt="صورة 2">
+        <p>هفضل طول العمر مميزك وادلعك يا طفلتي</p>
+        <p>ست البنات أجمل واحدة شافتها عيني والله، حقك عليا من الضغط اللي أنتي فيه والدوشة أنتي فوق راسي يا نور عيوني.. أنا أسف على أي حاجة عملتها زعلتك في يوم من الأيام يا طفلتي ❤️❤️</p>
+        <button onclick="showStep(3)">جاااهزززههه!!!!؟؟؟؟؟ دوسي هنااااااا 👀</button>
+    </div>
+
+    <div id="step3" class="container hidden">
+        <h2>الوقت اللي فات معاك ⏰</h2>
+        <div class="timer-grid">
+            <div class="time-box"><span id="days">0</span> يوم</div>
+            <div class="time-box"><span id="hours">0</span> ساعة</div>
+            <div class="time-box"><span id="mins">0</span> دقيقة</div>
+            <div class="time-box"><span id="secs">0</span> ثانية</div>
+        </div>
+        <p>منذ 8 أغسطس 2022 ❤️</p>
+        <button onclick="showStep(5)">خش على الفقره اللي خايف منهااا😂😂👀👀♥️♥️</button>
+    </div>
+
+    <div id="step5" class="container hidden">
+        <h2>اهم تواريخ في حياتي ❤️</h2>
+        
+        <div class="date-box">
+            <div class="date-header" onclick="toggleDate(this)">8 / 8 / 2022 ✨</div>
+            <div class="date-content">اهم تاريخ في حياتي يوم ما روحي رجعتلي من تاني وحسيت قد اي حياتي كانت ناقصه من غيرك يا حببتي وعرفت يعني اي اعيش ♥️♥️😍✨️</div>
+        </div>
+
+        <div class="date-box">
+            <div class="date-header" onclick="toggleDate(this)">23 / 7 / 2023 💘</div>
+            <div class="date-content">يارب اكون قولتوا صح بس 😂😂 اول فرح نحضروا سوا عمري ما انسى الفستان اللي كان وقتها ولا الميكب ولا اول لما بصينا في عيون بعض اول لما شوفنا بعض حسيت بسهم رشق في قلبي كدا 😅💘</div>
+        </div>
+
+        <div class="date-box">
+            <div class="date-header" onclick="toggleDate(this)">10 / 4 / 2024 👀</div>
+            <div class="date-content">اول خروجه سوا يومها انا فاكر شوفتك بجمال عمري مشوفته كان قبل كدا رغم اني كنت مضايق بس لما روحنا اتصالحنا وساعتها كانت احسن خروجه في عمري مستني نكررها سوا انا وانتي بس يا بنوتي ♥️♥️👀</div>
+        </div>
+
+        <!-- التاريخ الجديد المضاف -->
+        <div class="date-box">
+            <div class="date-header" onclick="toggleDate(this)">24 / 6 / 2026 ❤️🎓</div>
+            <div class="date-content">اليوم دا اشطر دكتوره في الدنيا بقت <b>Semi Senior</b> قد الدنياا مبروك عليكي يا دكتوره نجاحك♥️♥️😍 ومبروك علينا احنا دكتورتنا اللي مشرفانا ✨مبسوطين بيكي يا ندى هانت على حلمك ربنا يوفقك ويسعدك دايما يا رب 😍🥳فخور بيكي وباللي وصلتيله اكتر من اي حد والله♥️🥹</div>
+        </div>
+
+        <button onclick="showStep(4)">آخر حاجة عايز أقولها ❤️</button>
+    </div>
+
+    <div id="step4" class="container hidden">
+        <h2>وعد العمر ❤️</h2>
+        <p><strong>وعد هفضل أحبك طول العمر ولآخر العمر يا حياتي هفضل أعمل أي حاجة عشان أرضيكي هختارك دايماً في الوقت اللي مش فاهمين بعضنا فيه هكون سندك وضهرك وحمايتك دايماً ❤️❤️🤜🏼</strong></p>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            if(u === "Nada" && p === "1/1/2006") { 
+                try { document.getElementById('mySong').play(); } catch(e) {}
+                showStep(2); 
+            } else { alert("اكتبي صح يا شطوررههههه!"); }
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.container').forEach(c => c.classList.add('hidden'));
+            document.getElementById('step' + n).classList.remove('hidden');
+            if(n === 3) { startTimer(); }
+        }
+
+        function toggleDate(element) {
+            const content = element.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+
+        function startTimer() {
+            const start = new Date("2022-08-08T00:00:00").getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const diff = now - start;
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
